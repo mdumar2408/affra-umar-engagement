@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useTransform } from 'framer-motion';
 import { Arch, Divider } from '../components/Ornaments.jsx';
 import { EVENT } from '../config.js';
+import { useStrings } from '../i18n.js';
 import { LANDSCAPE, useExit, useMediaQuery, useMotionOff, useReveal, useSceneProgress } from '../lib/hooks.js';
 
 /** A line of type that slides up out of a mask. */
@@ -24,6 +25,7 @@ export default function Couple() {
   const off = useMotionOff();
   const wide = useMediaQuery(LANDSCAPE);
   const { enter, p, exit } = useSceneProgress(ref);
+  const t = useStrings().couple;
 
   const archOuter = useTransform([enter, p], ([e, v]) => Math.min(1, e * 0.35 + v * 1.3));
   const archInner = useTransform(p, [0.1, 0.55], [0, 1]);
@@ -47,13 +49,13 @@ export default function Couple() {
 
         <motion.div className="couple__content" style={leave}>
           <motion.p className="eyebrow" style={eyebrow}>
-            Two hearts · One journey
+            {t.eyebrow}
           </motion.p>
           <h2 className="couple__names">
             <MaskLine p={p} range={[0.1, 0.3]}>
               {EVENT.bride}
             </MaskLine>
-            <span className="couple__join" aria-label="and">
+            <span className="couple__join" aria-label={t.and}>
               <Divider className="couple__divider" draw={off ? undefined : divider} />
               <motion.span className="couple__amp" style={amp} aria-hidden="true">
                 &amp;
@@ -64,7 +66,7 @@ export default function Couple() {
             </MaskLine>
           </h2>
           <motion.p className="couple__note" style={note}>
-            Two families, one prayer — a lifetime of barakah, in shā’ Allāh.
+            {t.note}
           </motion.p>
         </motion.div>
       </div>

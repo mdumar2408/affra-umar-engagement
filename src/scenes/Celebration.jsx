@@ -2,12 +2,14 @@ import { motion, useTransform } from 'framer-motion';
 import Countdown from '../components/Countdown.jsx';
 import { Rosette, Star8 } from '../components/Ornaments.jsx';
 import { EVENT } from '../config.js';
+import { useStrings } from '../i18n.js';
 import { useExit, useMotionOff, useReveal, useSceneProgress } from '../lib/hooks.js';
 
 /** Scene 4 — the date, ceremony and venue unfold, with the countdown woven into the composition. */
 export default function Celebration({ sectionRef }) {
   const off = useMotionOff();
   const { enter, p, exit } = useSceneProgress(sectionRef);
+  const t = useStrings().celebrate;
 
   const leave = useExit(exit);
   const eyebrow = useReveal(enter, [0.55, 1], { y: 16 });
@@ -26,7 +28,7 @@ export default function Celebration({ sectionRef }) {
       <div className="stage">
         <motion.div className="celebrate__content" style={leave}>
           <motion.p className="eyebrow" style={eyebrow}>
-            Save the date
+            {t.eyebrow}
           </motion.p>
 
           <div className="date">
@@ -37,13 +39,13 @@ export default function Celebration({ sectionRef }) {
               <Rosette />
             </motion.div>
             <motion.p className="date__weekday" style={weekday}>
-              {EVENT.weekday} · {EVENT.time}
+              {t.weekdayTime}
             </motion.p>
             <motion.p className="date__day" style={day}>
               09
             </motion.p>
             <motion.p className="date__month" style={month}>
-              <span>November</span>
+              <span>{t.month}</span>
               <Star8 className="inline-star" />
               <span>2026</span>
             </motion.p>
@@ -52,11 +54,11 @@ export default function Celebration({ sectionRef }) {
           <motion.span className="rule" style={off ? undefined : { scaleX: rule }} aria-hidden="true" />
 
           <motion.h2 className="ceremony" style={ceremony}>
-            {EVENT.ceremony}
+            {t.ceremony}
           </motion.h2>
           <motion.p className="venue-line" style={venue}>
             {EVENT.venue}
-            <span>{EVENT.city}</span>
+            <span>{t.city}</span>
           </motion.p>
 
           <Countdown p={p} iso={EVENT.dateISO} endIso={EVENT.dayEndISO} />

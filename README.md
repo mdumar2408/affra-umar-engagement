@@ -13,10 +13,17 @@ via `.github/workflows/deploy.yml`.
 
 ## Where things live
 
-- `src/config.js` — names, date, venue, city, Maps link. Edit details here.
+- `src/config.js` — names, start time, venue, Maps link (the same in every language).
+- `src/i18n.js` — all wording in English and Tamil. Add or edit text here for both languages.
 - `src/scenes/` — the seven scenes, in scroll order.
 - `src/components/Backdrop.jsx` — fixed background tones and the geometric pattern.
 - `src/assets/venue-qr.png` — the venue QR code (encodes the Maps link).
+
+## Languages
+
+The EN / தமிழ் toggle sits in the top-right corner. The choice is remembered in the browser,
+and `?lang=ta` opens the Tamil version directly — handy for sharing:
+https://mdumar2408.github.io/affra-umar-engagement/?lang=ta
 
 ## How the scrolling works
 

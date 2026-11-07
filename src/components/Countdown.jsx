@@ -1,15 +1,11 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useStrings } from '../i18n.js';
 import { EASE, useReveal } from '../lib/hooks.js';
 import { Star8 } from './Ornaments.jsx';
 
 const DAY = 86_400_000;
-const UNITS = [
-  ['days', 'Days'],
-  ['hours', 'Hours'],
-  ['minutes', 'Minutes'],
-  ['seconds', 'Seconds'],
-];
+const UNITS = ['days', 'hours', 'minutes', 'seconds'];
 
 function remaining(target, now) {
   const ms = Math.max(0, target - now);
@@ -55,30 +51,26 @@ export default function Countdown({ p, iso, endIso }) {
     return () => clearInterval(id);
   }, []);
 
+  const t = useStrings().countdown;
   const left = remaining(target, now);
-  const status =
-    now < target
-      ? 'until we celebrate together, in shā’ Allāh'
-      : now < dayEnd
-        ? 'Today is the day — Alhamdulillah!'
-        : 'Alhamdulillah — thank you for celebrating with us.';
+  const status = now < target ? t.before : now < dayEnd ? t.today : t.after;
   const sepStyle = useReveal(p, [0.55, 0.7], { y: 0 });
   const statusStyle = useReveal(p, [0.72, 0.84], { y: 10 });
 
   return (
     <div className="cd">
       <p className="sr-only">
-        {now < target ? `${left.days} days, ${left.hours} hours and ${left.minutes} minutes to go` : status}
+        {now < target ? t.remaining(left.days, left.hours, left.minutes) : status}
       </p>
       <div className="cd__row">
-        {UNITS.map(([key, label], i) => (
+        {UNITS.map((key, i) => (
           <Fragment key={key}>
             {i > 0 && (
               <motion.span className="cd__sep" style={sepStyle}>
                 <Star8 />
               </motion.span>
             )}
-            <Unit value={pad(left[key])} label={label} p={p} index={i} />
+            <Unit value={pad(left[key])} label={t.units[i]} p={p} index={i} />
           </Fragment>
         ))}
       </div>

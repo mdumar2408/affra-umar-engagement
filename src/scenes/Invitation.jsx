@@ -1,16 +1,11 @@
 import { useRef } from 'react';
 import { motion, useTransform } from 'framer-motion';
 import { Rosette, Star8 } from '../components/Ornaments.jsx';
+import { useStrings } from '../i18n.js';
 import { COMPACT, useExit, useMediaQuery, useMotionOff, useReveal, useSceneProgress } from '../lib/hooks.js';
 
-const LINES = [
-  { text: 'In the name of Allah, the Most Gracious, the Most Merciful', at: 0.06, kind: 'lead' },
-  { text: 'With the blessings of our families,', at: 0.14 },
-  { text: 'we joyfully invite you and your loved ones', at: 0.22 },
-  { text: 'to celebrate', at: 0.3 },
-  { text: 'our engagement', at: 0.38, kind: 'key' },
-  { text: 'and share in the joy of this blessed day.', at: 0.48 },
-];
+// Each line starts revealing a little after the one before it.
+const lineStart = (i) => 0.06 + i * 0.085;
 
 function Line({ p, at, kind, children }) {
   const style = useReveal(p, [at, at + 0.1], { y: 18 });
@@ -27,6 +22,7 @@ export default function Invitation() {
   const off = useMotionOff();
   const compact = useMediaQuery(COMPACT);
   const { enter, p, exit } = useSceneProgress(ref);
+  const t = useStrings().invite;
 
   const card = useReveal(enter, [0.35, 1], { y: 40, scale: 0.96 });
   const leave = useExit(exit);
@@ -66,15 +62,15 @@ export default function Invitation() {
 
             <div className="invite-card__body">
               <motion.p className="eyebrow" style={eyebrow}>
-                Bismillāh · With gratitude
+                {t.eyebrow}
               </motion.p>
-              {LINES.map((l) => (
-                <Line key={l.text} p={p} at={l.at} kind={l.kind}>
+              {t.lines.map((l, i) => (
+                <Line key={i} p={p} at={lineStart(i)} kind={l.kind}>
                   {l.text}
                 </Line>
               ))}
               <motion.p className="invite-note" style={note}>
-                Your presence and duas would mean the world to us.
+                {t.note}
               </motion.p>
               <motion.span className="invite-cue" style={cue} aria-hidden="true">
                 <span />

@@ -13,8 +13,9 @@
   --gold-soft: rgba(169, 136, 80, 0.5);
   --gold-faint: rgba(169, 136, 80, 0.22);
 
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
+  /* Tamil glyphs fall through to the Noto Tamil faces; Latin keeps Cormorant / DM Sans. */
+  --serif: 'Cormorant Garamond', 'Noto Serif Tamil', Georgia, serif;
+  --sans: 'DM Sans', 'Noto Sans Tamil', system-ui, sans-serif;
   --arabic: 'Amiri', 'Times New Roman', serif;
   --callig: 'Aref Ruqaa', 'Amiri', serif;
 
@@ -203,7 +204,8 @@ h2 {
   height: 100svh;
   display: grid;
   place-items: center;
-  padding: var(--s-4) var(--gutter);
+  /* Top padding always clears the fixed language toggle. */
+  padding: max(var(--s-4), 58px) var(--gutter) var(--s-4);
   overflow: clip;
 }
 
@@ -1028,6 +1030,95 @@ h2 {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
+}
+
+/* ───────────────────────── Language toggle ───────────────────────── */
+.lang-toggle {
+  position: fixed;
+  top: clamp(10px, 2svh, 18px);
+  right: clamp(10px, 2vw, 24px);
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.88);
+  border: 1px solid var(--gold-faint);
+  box-shadow: 0 8px 24px -14px rgba(80, 70, 40, 0.35);
+}
+
+.lang-toggle__btn {
+  min-width: 44px;
+  min-height: 32px;
+  padding: 0.45rem 0.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 600 0.72rem/1 var(--sans);
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.lang-toggle__btn[lang='ta'] {
+  letter-spacing: 0;
+  font-size: 0.8rem;
+}
+
+.lang-toggle__btn:hover {
+  color: var(--sage);
+}
+
+.lang-toggle__btn[aria-pressed='true'] {
+  background: var(--sage);
+  color: #fff;
+}
+
+/* ───────────────────────── Tamil typography ───────────────────────── */
+/* Noto Tamil is much larger than Cormorant at the same size; match x-heights instead. */
+/* Set per element: `from-font` resolves against that element's own primary font (Cormorant or DM Sans). */
+:root[lang='ta'] body * {
+  font-size-adjust: ex-height from-font;
+}
+
+/* Tamil has no italic face; keep it upright rather than slanting it artificially. */
+:root[lang='ta'] {
+  font-synthesis-style: none;
+}
+
+/* Wide tracking breaks up Tamil letter clusters. */
+:root[lang='ta'] :is(
+  .eyebrow, .dua__label, .dua__source, .date__weekday, .date__month, .venue-line span,
+  .cd__label, .closing__small, .qr__title, .maps-btn, .scroll-cue__inner, .opening__date
+) {
+  letter-spacing: 0.04em;
+}
+
+:root[lang='ta'] :is(.couple__note, .section-lede, .dua__en, .coda__en, .closing__en, .qr__hint, .cd__status, .kicker) {
+  line-height: 1.7;
+}
+
+/* Tamil sentences run longer, so the card widens and lines may use its full width. */
+:root[lang='ta'] .invite__wrap {
+  width: min(100%, 760px);
+}
+
+:root[lang='ta'] .invite-line {
+  max-width: none;
+  font-size: clamp(1rem, min(0.85rem + 0.7vw, 2.7svh), 1.35rem);
+}
+
+:root[lang='ta'] :is(.invite-line, .invite-note) {
+  line-height: 1.55;
+}
+
+:root[lang='ta'] .invite-line--key {
+  font-size: clamp(1.35rem, min(1rem + 2vw, 4.6svh), 2.3rem);
+}
+
+:root[lang='ta'] :is(.invite-line--key, .section-title, .ceremony, .venue__name) {
+  line-height: 1.45;
 }
 
 /* ───────────────────────── Motion fallbacks ───────────────────────── */

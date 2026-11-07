@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Arch, Star8 } from '../components/Ornaments.jsx';
 import { EVENT } from '../config.js';
+import { useStrings } from '../i18n.js';
 import { COMPACT, LANDSCAPE, useMediaQuery, useMotionOff } from '../lib/hooks.js';
 
 function Letters({ text, start }) {
@@ -27,6 +28,7 @@ export default function Opening() {
   const archScale = useTransform(exit, [0, 1], [1, compact ? 1.2 : 1.4]);
   const archFade = useTransform(exit, [0.1, 0.75], [1, 0]);
   const cueFade = useTransform(exit, [0, 0.08], [1, 0]);
+  const t = useStrings().opening;
 
   return (
     <section ref={ref} className="scene opening" id="top" aria-label="Opening">
@@ -44,9 +46,9 @@ export default function Opening() {
 
           <motion.div className="opening__content" style={off ? undefined : { opacity: fade, scale: settle }}>
             <p className="kicker load" style={{ '--d': '0.9s' }}>
-              The engagement of
+              {t.kicker}
             </p>
-            <h1 className="opening__names" aria-label={`${EVENT.brideShort} and ${EVENT.groomShort}`}>
+            <h1 className="opening__names" aria-label={t.namesLabel}>
               <span className="opening__name" aria-hidden="true">
                 <Letters text={EVENT.brideShort} start={1.05} />
               </span>
@@ -58,9 +60,9 @@ export default function Opening() {
               </span>
             </h1>
             <p className="opening__date load" style={{ '--d': '2.4s' }}>
-              <span>{EVENT.weekday}</span>
+              <span>{t.weekday}</span>
               <Star8 className="inline-star" />
-              <span>{EVENT.dateLong}</span>
+              <span>{t.date}</span>
             </p>
           </motion.div>
         </div>
@@ -68,7 +70,7 @@ export default function Opening() {
 
       <motion.a href="#invitation" className="scroll-cue" style={off ? undefined : { opacity: cueFade }}>
         <span className="scroll-cue__inner load" style={{ '--d': '3s' }}>
-          Scroll to open
+          {t.cue}
           <span className="scroll-cue__line" />
         </span>
       </motion.a>
