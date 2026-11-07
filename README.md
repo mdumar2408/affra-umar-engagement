@@ -8,6 +8,9 @@ npm run dev      # http://localhost:5173
 npm run build    # static site in dist/
 ```
 
+Live at https://mdumar2408.github.io/affra-umar-engagement/ — every push to `main` rebuilds and redeploys
+via `.github/workflows/deploy.yml`.
+
 ## Where things live
 
 - `src/config.js` — names, date, venue, city, Maps link. Edit details here.
