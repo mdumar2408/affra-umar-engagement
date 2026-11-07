@@ -4,10 +4,13 @@ export const EVENT = {
   groom: 'Mohamad Umar M',
   brideShort: 'Affra',
   groomShort: 'Umar',
-  // No ceremony time was supplied, so the countdown targets the start of the day in India (UTC+05:30).
-  dateISO: '2026-11-09T00:00:00+05:30',
+  // Ceremony start, India time (UTC+05:30). The countdown targets this moment.
+  dateISO: '2026-11-09T11:00:00+05:30',
+  // After the start, the countdown reads "Today is the day" until this moment.
+  dayEndISO: '2026-11-10T00:00:00+05:30',
   weekday: 'Monday',
   dateLong: '09 November 2026',
+  time: '11:00 AM',
   ceremony: 'Engagement Ceremony',
   venue: 'Meera Banquet Hall & Service Apartment',
   city: 'Tirunelveli',

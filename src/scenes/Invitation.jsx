@@ -4,11 +4,12 @@ import { Rosette, Star8 } from '../components/Ornaments.jsx';
 import { COMPACT, useExit, useMediaQuery, useMotionOff, useReveal, useSceneProgress } from '../lib/hooks.js';
 
 const LINES = [
-  { text: 'In the name of Allah, the Most Gracious, the Most Merciful,', at: 0.08, kind: 'lead' },
-  { text: 'and with the blessings of our families,', at: 0.17 },
-  { text: 'we warmly invite you and your loved ones', at: 0.26 },
-  { text: 'to join us as we celebrate', at: 0.35 },
-  { text: 'the engagement of', at: 0.46, kind: 'key' },
+  { text: 'In the name of Allah, the Most Gracious, the Most Merciful', at: 0.06, kind: 'lead' },
+  { text: 'With the blessings of our families,', at: 0.14 },
+  { text: 'we joyfully invite you and your loved ones', at: 0.22 },
+  { text: 'to celebrate', at: 0.3 },
+  { text: 'our engagement', at: 0.38, kind: 'key' },
+  { text: 'and share in the joy of this blessed day.', at: 0.48 },
 ];
 
 function Line({ p, at, kind, children }) {
@@ -33,8 +34,8 @@ export default function Invitation() {
   const edgeY = useTransform(enter, [0.6, 1], [0, 1]);
   const inner = useTransform(p, [0, 0.08], [0, 1]);
   const eyebrow = useReveal(p, [0, 0.08], { y: 10 });
-  const note = useReveal(p, [0.58, 0.7], { y: 14 });
-  const cue = useReveal(p, [0.68, 0.8], { y: -10 });
+  const note = useReveal(p, [0.64, 0.76], { y: 14 });
+  const cue = useReveal(p, [0.74, 0.84], { y: -10 });
 
   const floatA = useTransform(p, [0, 1], compact ? [16, -16] : [90, -90]);
   const floatB = useTransform(p, [0, 1], compact ? [-12, 12] : [-70, 70]);

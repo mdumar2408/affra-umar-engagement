@@ -45,8 +45,9 @@ function Unit({ value, label, p, index }) {
   );
 }
 
-export default function Countdown({ p, iso }) {
+export default function Countdown({ p, iso, endIso }) {
   const target = useMemo(() => new Date(iso).getTime(), [iso]);
+  const dayEnd = useMemo(() => new Date(endIso).getTime(), [endIso]);
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function Countdown({ p, iso }) {
   const status =
     now < target
       ? 'until we celebrate together, in shā’ Allāh'
-      : now < target + DAY
+      : now < dayEnd
         ? 'Today is the day — Alhamdulillah!'
         : 'Alhamdulillah — thank you for celebrating with us.';
   const sepStyle = useReveal(p, [0.55, 0.7], { y: 0 });

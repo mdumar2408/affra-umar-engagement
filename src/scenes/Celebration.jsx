@@ -37,7 +37,7 @@ export default function Celebration({ sectionRef }) {
               <Rosette />
             </motion.div>
             <motion.p className="date__weekday" style={weekday}>
-              {EVENT.weekday}
+              {EVENT.weekday} · {EVENT.time}
             </motion.p>
             <motion.p className="date__day" style={day}>
               09
@@ -59,7 +59,7 @@ export default function Celebration({ sectionRef }) {
             <span>{EVENT.city}</span>
           </motion.p>
 
-          <Countdown p={p} iso={EVENT.dateISO} />
+          <Countdown p={p} iso={EVENT.dateISO} endIso={EVENT.dayEndISO} />
         </motion.div>
       </div>
     </section>

@@ -429,17 +429,17 @@ h2 {
 .invite-card__body {
   display: grid;
   justify-items: center;
-  gap: clamp(0.35rem, 1.2svh, 0.75rem);
+  gap: clamp(0.2rem, 1svh, 0.75rem);
 }
 
 .invite-card__body .eyebrow {
-  margin-bottom: var(--s-2);
+  margin-bottom: clamp(0.4rem, 2svh, 1.25rem);
 }
 
 .invite-line {
-  font: 400 clamp(1.15rem, 0.95rem + 1vw, 1.6rem)/1.4 var(--serif);
+  font: 400 clamp(1.05rem, min(0.95rem + 1vw, 3.3svh), 1.6rem)/1.4 var(--serif);
   color: var(--ink);
-  max-width: 28ch;
+  max-width: 34ch;
 }
 
 .invite-line--lead {
@@ -449,8 +449,8 @@ h2 {
 }
 
 .invite-line--key {
-  margin-top: var(--s-2);
-  font: italic 500 clamp(1.8rem, 1.2rem + 2.6vw, 2.9rem)/1.15 var(--serif);
+  margin-block: var(--s-1);
+  font: italic 500 clamp(1.6rem, min(1.2rem + 2.6vw, 5.6svh), 2.9rem)/1.15 var(--serif);
   color: var(--rose);
 }
 

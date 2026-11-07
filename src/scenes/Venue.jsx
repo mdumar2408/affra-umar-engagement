@@ -32,7 +32,7 @@ export default function Venue({ sectionRef }) {
           <motion.p className="venue__meta" variants={rise} custom={0.3}>
             <span>{EVENT.ceremony}</span>
             <span>
-              {EVENT.weekday}, {EVENT.dateLong}
+              {EVENT.weekday}, {EVENT.dateLong} · {EVENT.time}
             </span>
             <span>{EVENT.city}</span>
           </motion.p>
