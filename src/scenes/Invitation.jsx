@@ -61,8 +61,8 @@ export default function Invitation() {
             ))}
 
             <div className="invite-card__body">
-              <motion.p className="eyebrow" style={eyebrow}>
-                {t.eyebrow}
+              <motion.p className="invite-ar" style={eyebrow} lang="ar" dir="rtl">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
               </motion.p>
               {t.lines.map((l, i) => (
                 <Line key={i} p={p} at={lineStart(i)} kind={l.kind}>

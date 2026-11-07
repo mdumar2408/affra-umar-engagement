@@ -381,12 +381,12 @@ h2 {
 .float--b { bottom: 2%; right: -8%; }
 
 .invite__wrap {
-  width: min(100%, 640px);
+  width: min(100%, 820px);
 }
 
 .invite-card {
   position: relative;
-  padding: clamp(2.25rem, 6svh, 4.5rem) clamp(1.25rem, 6vw, 4.5rem);
+  padding: clamp(1.75rem, 5svh, 4.5rem) clamp(1.25rem, 6vw, 4.5rem);
   text-align: center;
   background: rgba(255, 252, 246, 0.78);
   box-shadow: 0 30px 80px -40px rgba(80, 70, 40, 0.25);
@@ -434,14 +434,17 @@ h2 {
   gap: clamp(0.2rem, 1svh, 0.75rem);
 }
 
-.invite-card__body .eyebrow {
-  margin-bottom: clamp(0.4rem, 2svh, 1.25rem);
+.invite-ar {
+  margin-bottom: clamp(0.1rem, 1svh, 0.6rem);
+  padding-inline: 0.2em;
+  font: 700 clamp(1.3rem, min(1.05rem + 1vw, 3.6svh), 1.9rem)/1.9 var(--arabic);
+  color: var(--sage);
 }
 
 .invite-line {
-  font: 400 clamp(1.05rem, min(0.95rem + 1vw, 3.3svh), 1.6rem)/1.4 var(--serif);
+  font: 400 clamp(1.05rem, min(0.95rem + 1vw, 3.1svh), 1.6rem)/1.4 var(--serif);
   color: var(--ink);
-  max-width: 34ch;
+  max-width: 44ch;
 }
 
 .invite-line--lead {
@@ -458,8 +461,8 @@ h2 {
 
 .invite-note {
   margin-top: var(--s-2);
-  font: italic 400 clamp(0.98rem, 0.9rem + 0.3vw, 1.1rem)/1.5 var(--serif);
-  color: var(--muted);
+  font: italic 500 clamp(1rem, 0.92rem + 0.35vw, 1.2rem)/1.5 var(--serif);
+  color: var(--sage);
   max-width: 32ch;
 }
 
@@ -1101,12 +1104,12 @@ h2 {
 
 /* Tamil sentences run longer, so the card widens and lines may use its full width. */
 :root[lang='ta'] .invite__wrap {
-  width: min(100%, 760px);
+  width: min(100%, 860px);
 }
 
 :root[lang='ta'] .invite-line {
   max-width: none;
-  font-size: clamp(1rem, min(0.85rem + 0.7vw, 2.7svh), 1.35rem);
+  font-size: clamp(1rem, min(0.85rem + 0.7vw, 2.5svh), 1.35rem);
 }
 
 :root[lang='ta'] :is(.invite-line, .invite-note) {
